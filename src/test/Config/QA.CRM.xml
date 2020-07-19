@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CRM_TEST_SUITE">
+    <test name="Config">
+        <classes>
+            <class name="Config.Config" />
+        </classes>
+    </test>
+    <test name="Test_Login">
+    <classes>
+        <class name="TestScenarios.Test_Login" />
+    </classes>
+    </test>
+</suite>
