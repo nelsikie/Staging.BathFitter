@@ -1,6 +1,5 @@
 package Config;
 
-import POM.Login_POM;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,10 +7,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.util.concurrent.TimeUnit;
+
 public class Config {
 
-    public WebDriver driver;
-    public Login_POM objLogin;
+    public static WebDriver driver;
 
     @BeforeSuite
     public void Setup() {
@@ -19,7 +19,7 @@ public class Config {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://crmqa.bathfitter.com/");
     }
 
