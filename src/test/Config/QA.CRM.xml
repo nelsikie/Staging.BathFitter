@@ -9,6 +9,7 @@
     <test name="Test_Login">
     <classes>
         <class name="TestScenarios.Test_Login" />
+        <class name="TestScenarios.Test_NewLeadOpp" />
     </classes>
     </test>
 </suite>

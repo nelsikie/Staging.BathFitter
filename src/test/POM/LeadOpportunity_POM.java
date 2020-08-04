@@ -94,6 +94,17 @@ public class LeadOpportunity_POM extends Config {
         return timeStamp;
     }
 
+    // Needs to be in generic call file
+    public void switchContentFrame0() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.switchTo().frame(contentFrame0);
+    }
+
+    // Needs to be in generic call file
     public void switchContentFrame1() {
         try {
             Thread.sleep(5000);
@@ -193,7 +204,7 @@ public class LeadOpportunity_POM extends Config {
         generators = new Generators();
         // NEED A RANDOM NAME GENERATOR
         System.out.println("DO YOU EVEN REACH THIS SPOT?");
-        ArrayList<String> test = new ArrayList<String>(driver.getWindowHandles());
+        ArrayList<String> test = new ArrayList<String>(driver.getWindowHandles());          // WINDOW SELECTION NEEDS TO BE IN A GENERIC SPOT
         System.out.println("Test size " + test);
         Thread.sleep(5000);
         driver.switchTo().window(test.get(1));
@@ -253,9 +264,11 @@ public class LeadOpportunity_POM extends Config {
         return headerAfter;
     }
 
-    public void createSalesActivity() {
+    public void createSalesActivity() throws InterruptedException {
+        switchContentFrame1();
         WebElement button = driver.findElement(addActivitiesLeadOpp);
-        System.out.println(button.isDisplayed());
+//        Thread.sleep(10000);
+        System.out.println("Button is displayed?" + button.isDisplayed());
         driver.findElement(addActivitiesLeadOpp).click();
     }
 

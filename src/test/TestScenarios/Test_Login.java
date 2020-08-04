@@ -13,7 +13,7 @@ public class Test_Login extends Config {
         // Create login page object
         objLogin = new Login_POM(driver);
         // Login
-        objLogin.loginToCRM("bmmtl\\069ac", "BF!CRM90");
+        objLogin.loginToCRM("bmmtl\\193ac", "BF!CRM90");
 
     }
 }
