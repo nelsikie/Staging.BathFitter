@@ -15,15 +15,14 @@ import java.util.List;
 
 public class LeadOpportunity_POM extends Config {
 
+    // Test Branch 193, Postal code 03032, State NH New Hampsire
+    private final String timeStamp = new SimpleDateFormat("yyyy_MMMMM_dd_HH.mm.ss.SSSS").format(new Date());
     public Generators generators;
     WebDriver driver;
     String contentFrame0 = "contentIFrame0";
     String contentFrame1 = "contentIFrame1";
-    String headerBefore;
     // Top Text
-    By HeaderTitle = By.id("HeaderTitleElement");
     // Pop out button
-    By PopOutButton = By.cssSelector(".ms-crm-ImageStrip-popout");
     By Origin_DD_Selection = By.id("bfr_mainsource_i");
     // BATHROOM INFORMATION
     By yearBuild = By.id("bfr_yearbuilt");
@@ -81,8 +80,6 @@ public class LeadOpportunity_POM extends Config {
     By addActivitiesLeadOpp = By.id("leadoppActivities_addImageButtonImage");
     // RECORD INFORMATION
     By origin = By.id("bfr_mainsource_d");
-    // Test Branch 193, Postal code 03032, State NH New Hampsire
-    private String timeStamp = new SimpleDateFormat("yyyy_MMMMM_dd_HH.mm.ss.SSSS").format(new Date());
 
     // Constructor
     public LeadOpportunity_POM(WebDriver driver) {
@@ -203,11 +200,9 @@ public class LeadOpportunity_POM extends Config {
     public void setContact() throws InterruptedException {
         generators = new Generators();
         // NEED A RANDOM NAME GENERATOR
-        System.out.println("DO YOU EVEN REACH THIS SPOT?");
-        ArrayList<String> test = new ArrayList<String>(driver.getWindowHandles());          // WINDOW SELECTION NEEDS TO BE IN A GENERIC SPOT
-        System.out.println("Test size " + test);
+        ArrayList<String> window = new ArrayList<>(driver.getWindowHandles());          // WINDOW SELECTION NEEDS TO BE IN A GENERIC SPOT
         Thread.sleep(5000);
-        driver.switchTo().window(test.get(1));
+        driver.switchTo().window(window.get(1));
         System.out.println("Title of the page" + driver.getTitle());
         driver.switchTo().frame(contentFrame0);
         driver.findElement(salutation).click();
@@ -232,43 +227,19 @@ public class LeadOpportunity_POM extends Config {
     }
 
     public void saveContact() {
-        System.out.println("before switching customer save button area");
         driver.switchTo().defaultContent();
         driver.findElement(customerSaveButton).click();
-        System.out.println("After customer save & close");
     }
 
     public void saveLead() {
-        ArrayList<String> test = new ArrayList<String>(driver.getWindowHandles());
-        System.out.println("Test size " + test);
-        driver.switchTo().window(test.get(0));
+        ArrayList<String> window = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(window.get(0));
         List<WebElement> topMenuBar = driver.findElements(By.cssSelector(".ms-crm-CommandBarItem.ms-crm-CommandBar-Menu.ms-crm-CommandBar-Button"));
-        for (int i = 0; i < topMenuBar.size(); i++) {
-            System.out.println("topMenuBar :" + topMenuBar.get(i));
-        }
         topMenuBar.get(0).click();
     }
 
-    public void goToDirectLeadOppURL() {
-        driver.findElement(PopOutButton).click();
-    }
-
-    public String getStartHeaderTitle() {
-        String headerBefore = driver.findElement(HeaderTitle).getText();
-        System.out.println(headerBefore);
-        return headerBefore;
-    }
-
-    public boolean checkHeaderTitleChanged() {
-        boolean headerAfter = driver.findElement(HeaderTitle).equals(headerBefore);
-        return headerAfter;
-    }
-
-    public void createSalesActivity() throws InterruptedException {
+    public void createSalesActivity() {
         switchContentFrame1();
-        WebElement button = driver.findElement(addActivitiesLeadOpp);
-//        Thread.sleep(10000);
-        System.out.println("Button is displayed?" + button.isDisplayed());
         driver.findElement(addActivitiesLeadOpp).click();
     }
 
@@ -283,4 +254,23 @@ public class LeadOpportunity_POM extends Config {
     public void enterCustomer() throws InterruptedException {
         this.setContact();
     }
+
+    // This needs to be in POM
+//    public void openNewScheduledSalesConsultation() throws InterruptedException {
+//        driver.get("https://crmqa.bathfitter.com/main.aspx?etc=3&extraqs=&histKey=658095976&id=%7bD006D79B-20D8-EA11-80E2-00155D00CDC6%7d&newWindow=true&pagetype=entityrecord#87807381");
+//
+//        WebElement CF0 = driver.findElement(By.id("contentIFrame0"));
+//        String test = CF0.getAttribute("innerHTML");
+//        test.toString();
+//        System.out.println(test);
+//        switchContentFrame0();
+//        Thread.sleep(2000);
+//        WebElement salesAppointment = driver.findElement(By.id("gridBodyTable_primaryField_{0D09BCA4-20D8-EA11-80E2-00155D00CDC6}_0"));
+//        salesAppointment.click();
+//        /*
+//            List<WebElement> appointments = driver.findElements(By.cssSelector(".ms-crm-List-Link")); //By.xpath("//*[contains(@id,'gridBodyTable_primaryField_')]")
+//            System.out.println("Appointments found: " + appointments.size());
+//            appointments.get(0).click();
+//        */
+//    }
 }

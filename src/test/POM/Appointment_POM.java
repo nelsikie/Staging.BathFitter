@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,6 @@ public class Appointment_POM {
 
     WebDriver driver;
 
-    String contentFrame0 = "contentIFrame0";
     By resource = By.id("bfr_ressource");
     By resourceField = By.id("bfr_ressource_ledit");
     By resourceMagnifyingGlass = By.id("bfr_ressource_i");
@@ -27,22 +24,11 @@ public class Appointment_POM {
         this.driver = driver;
     }
 
-    public void switchContentFrame0() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        driver.switchTo().frame(contentFrame0);
-    }
-
-
-    public void selectwindow() throws InterruptedException {
+    public void selectwindow(int i) throws InterruptedException {
         Thread.sleep(5000);
-        ArrayList<String> test = new ArrayList<String>(driver.getWindowHandles());
+        ArrayList<String> test = new ArrayList<>(driver.getWindowHandles());
         System.out.println("Test size " + test);
-        driver.switchTo().window(test.get(1));
-        switchContentFrame0();
+        driver.switchTo().window(test.get(i));
     }
 
     public void selectResource() {

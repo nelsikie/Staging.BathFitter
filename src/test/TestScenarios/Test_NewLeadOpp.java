@@ -1,18 +1,13 @@
 package TestScenarios;
 
 import Config.Config;
-import Config.Generators;
 import POM.Appointment_POM;
 import POM.DashBoard_POM;
 import POM.LeadOpportunity_POM;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.awt.*;
-
 public class Test_NewLeadOpp extends Config {
-
-    public Generators generators;
 
     @BeforeTest
     public void initiate() {
@@ -21,6 +16,7 @@ public class Test_NewLeadOpp extends Config {
         objAppointment = new Appointment_POM(driver);
 
     }
+
     //go to Next page
     @Test(priority = 1)
     public void goToLeadOpp() throws InterruptedException {
@@ -30,7 +26,7 @@ public class Test_NewLeadOpp extends Config {
 
     //Create new LeadOpp
     @Test(priority = 2)
-    public void createNewLeadOpp() throws InterruptedException, AWTException {
+    public void createNewLeadOpp() throws InterruptedException {
 
 
         objLeadOpportunity.switchContentFrame1();
@@ -60,12 +56,19 @@ public class Test_NewLeadOpp extends Config {
     @Test(priority = 3)
     public void createNewSalesAppointment() throws InterruptedException {
         objLeadOpportunity.createSalesActivity();
-        objAppointment.selectwindow();  // Select sales appointment window
+        objAppointment.selectwindow(1);  // Select sales appointment window
+        objLeadOpportunity.switchContentFrame0();
         objAppointment.selectResource();
         objAppointment.selectAppointmentConfirmed();
         objAppointment.selectVirtualConsultation();
         objAppointment.setAppointmentDuration("1 minute");
         driver.switchTo().defaultContent();
         objAppointment.saveAndClose();
+        objAppointment.selectwindow(0);
     }
+
+//    @Test(priority = 4)
+//    public void openSalesAppointment() throws InterruptedException {
+//        objLeadOpportunity.openNewScheduledSalesConsultation();
+//    }
 }
