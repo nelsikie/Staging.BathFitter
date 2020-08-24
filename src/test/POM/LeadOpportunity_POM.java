@@ -16,11 +16,11 @@ import java.util.List;
 public class LeadOpportunity_POM extends Config {
 
     // Test Branch 193, Postal code 03032, State NH New Hampsire
-    private final String timeStamp = new SimpleDateFormat("yyyy_MMMMM_dd_HH.mm.ss.SSSS").format(new Date());
+    private final String timeStamp = new SimpleDateFormat("yyyy_MMMMM_dd_HH.mm.ss.SSSS").format(new Date()); // Can be standardized in generic or generator class
     public Generators generators;
     WebDriver driver;
-    String contentFrame0 = "contentIFrame0";
-    String contentFrame1 = "contentIFrame1";
+    String contentFrame0 = "contentIFrame0";    // Make Generic class
+    String contentFrame1 = "contentIFrame1";    // Make Generic class
     // Top Text
     // Pop out button
     By Origin_DD_Selection = By.id("bfr_mainsource_i");
@@ -251,6 +251,7 @@ public class LeadOpportunity_POM extends Config {
         setInterestInBathFitter(8); // Temp placement
     }
 
+    // This needs to be removed
     public void enterCustomer() throws InterruptedException {
         this.setContact();
     }

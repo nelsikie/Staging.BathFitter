@@ -1,9 +1,6 @@
 package Config;
 
-import POM.Appointment_POM;
-import POM.DashBoard_POM;
-import POM.LeadOpportunity_POM;
-import POM.Login_POM;
+import POM.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +19,7 @@ public class Config {
     public DashBoard_POM objDashBoard;
     public Login_POM objLogin;
     public Appointment_POM objAppointment;
+    public ServiceCall_POM objServiceCall;
 
     @BeforeSuite
     public void Setup() {
@@ -33,8 +31,6 @@ public class Config {
         //add key and value to map as follow to switch off browser notification
         //Pass the argument 1 to allow and 2 to block
         prefs.put("profile.default_content_setting_values.notifications", 2);
-
-
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");

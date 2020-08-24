@@ -9,7 +9,8 @@
     <test name="Test_Login">
     <classes>
         <class name="TestScenarios.Test_Login" />
-        <class name="TestScenarios.Test_NewLeadOpp" />
+<!--        <class name="TestScenarios.Test_NewLeadOpp"/>-->
+        <class name="TestScenarios.Test_NewServiceCall" />
     </classes>
     </test>
 </suite>

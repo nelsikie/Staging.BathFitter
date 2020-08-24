@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 public class Test_NewLeadOpp extends Config {
 
+    // Can this be called in the config for all other tests?
     @BeforeTest
     public void initiate() {
         objDashBoard = new DashBoard_POM(driver);
@@ -19,8 +20,7 @@ public class Test_NewLeadOpp extends Config {
 
     //go to Next page
     @Test(priority = 1)
-    public void goToLeadOpp() throws InterruptedException {
-
+    public void goToLeadOpp() {
         objDashBoard.newLeadOpp();
     }
 
@@ -29,7 +29,7 @@ public class Test_NewLeadOpp extends Config {
     public void createNewLeadOpp() throws InterruptedException {
 
 
-        objLeadOpportunity.switchContentFrame1();
+        objLeadOpportunity.switchContentFrame1();       // This should be called in the POM. Other people will not know which one to call
 
         // BATHROOM INFORMATION
         objLeadOpportunity.enterBathroomInformation("2000", "1");
@@ -64,7 +64,7 @@ public class Test_NewLeadOpp extends Config {
         objAppointment.setAppointmentDuration("1 minute");
         driver.switchTo().defaultContent();
         objAppointment.saveAndClose();
-        objAppointment.selectwindow(0);
+        //objAppointment.selectwindow(0);
     }
 
 //    @Test(priority = 4)
